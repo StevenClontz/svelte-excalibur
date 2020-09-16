@@ -1,10 +1,19 @@
-<script>
-	export let name;
+<script lang="ts">
+	export let name: string
+	let show = false
+	import Game from './Game.svelte'
 </script>
 
 <main>
+	{#if !show}
 	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	{/if}
+	<p>
+		<a href="/" on:click|preventDefault={()=>show = !show}>Click</a>
+		to {#if show}hide{:else}show{/if} game.</p>
+	{#if show}
+		<Game/>
+	{/if}
 </main>
 
 <style>
